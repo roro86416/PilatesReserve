@@ -1,0 +1,41 @@
+<%- include('./partials/html-head') %> <%- include('./partials/html-navbar') %>
+
+<div class="hero bg-base-200 min-h-screen">
+  <div class="hero-content flex-col">
+    <h1 class="text-5xl font-bold mb-4">會員登入</h1>
+
+    <% if (typeof error!=="undefined"){ %>
+    <div class="alert alert-error max-w-sm"><%= error %></div>
+    <% } %>
+
+    <form
+      class="card bg-base-100 w-full max-w-sm shadow-2xl"
+      method="post"
+      action="/login"
+    >
+      <div class="card-body">
+        <label class="label">電子信箱</label>
+        <input
+          name="email"
+          type="email"
+          class="input input-bordered"
+          placeholder="abc@xxx.com"
+          required
+        />
+
+        <label class="label">密碼</label>
+        <input
+          name="password"
+          type="password"
+          class="input input-bordered"
+          placeholder="密碼"
+          required
+        />
+
+        <button class="btn btn-neutral mt-4" type="submit">登入</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<%- include('./partials/html-tail') %>

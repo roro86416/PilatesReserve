@@ -1,0 +1,70 @@
+<%- include('./partials/html-head') %> <%- include('./partials/html-navbar') %>
+
+<div class="container mx-auto p-6">
+  <h1 class="text-2xl font-bold mb-4">個人資料</h1>
+
+  <div class="mb-6">
+    <p>會員姓名：<span class="font-semibold"><%= me.name %></span></p>
+    <p>會員 ID：<%= me.id %></p>
+  </div>
+
+  <div class="mb-6">
+    <a class="btn btn-primary" href="/booking">新增課程</a>
+  </div>
+
+  <h2 class="text-xl font-bold mb-2">我的預約紀錄</h2>
+
+  <div class="container mx-auto mt-4">
+    <div class="mb-4">
+      <div class="join mt-4">
+        <% for(let i=1; i<=totalPages; i++){ %> <% if(i===page){ %>
+        <span class="join-item btn btn-sm btn-active cursor-default">
+          <%= i %>
+        </span>
+        <% } else { %>
+        <a class="join-item btn btn-sm" href="?page=<%= i %>"> <%= i %> </a>
+        <% } %> <% } %>
+      </div>
+    </div>
+    <div class="container mx-auto mt-4">
+      <table class="table table-zebra border border-base-300">
+        <thead class="bg-base-300">
+          <tr>
+            <th>會員姓名</th>
+            <th>課程日期</th>
+            <th>上課時間</th>
+            <th>授課教練</th>
+            <th>預約狀態</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for(let r of rows){ %>
+          <tr>
+            <td><%= r.member_name %></td>
+            <td><%= r.date %></td>
+            <td><%= r.start_time %></td>
+            <td><%= r.coach_name %></td>
+            <td><%= r.status %></td>
+            <td>
+              <% if(r.status !== "cancelled"){ %>
+              <a class="btn btn-sm" href="/me/bookings/edit/<%= r.id %>"
+                >更改
+              </a>
+              <a
+                class="btn btn-sm btn-error"
+                href="/me/bookings/delete/<%= r.id %>"
+                onclick="return confirm('確定要刪除這堂課嗎？')"
+                >刪除
+              </a>
+              <% } %>
+            </td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<%- include('./partials/html-tail') %>

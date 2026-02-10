@@ -1,0 +1,31 @@
+<%- include('./partials/html-head') %> <%- include('./partials/html-navbar') %>
+<div class="container mx-auto p-6">
+  <h1 class="text-2xl font-bold mb-4">更改預約</h1>
+  <form class="max-w-md space-y-3" method="post" action="/me/bookings/edit/<%= r.id %>">
+    <label class="form-control">
+      <span class="label-text">日期</span>
+      <input type="date" name="date" class="input input-bordered" value="<%= String(r.date).slice(0,10) %>" required>
+    </label>
+    <label class="form-control">
+      <span class="label-text">時間</span>
+      <select name="start_time" class="select select-bordered" required>
+        <% ["09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00"].forEach(t=>{ %>
+          <option value="<%= t %>" <%= r.start_time===t?'selected':'' %>><%= t %></option>
+        <% }) %>
+      </select>
+    </label>
+    <label class="form-control">
+      <span class="label-text">教練</span>
+      <select name="coach_id" class="select select-bordered" required>
+        <% coaches.forEach(c=>{ %>
+          <option value="<%= c.id %>" <%= r.coach_id===c.id?'selected':'' %>><%= c.name %></option>
+        <% }) %>
+      </select>
+    </label>
+    <div class="flex gap-2">
+      <button class="btn btn-primary" type="submit">儲存</button>
+      <a class="btn" href="/me">返回</a>
+    </div>
+  </form>
+</div>
+<%- include('./partials/html-tail') %>

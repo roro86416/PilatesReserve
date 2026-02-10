@@ -1,0 +1,43 @@
+<!-- /views/booking.ejs -->
+<%- include('./partials/html-head') %> <%- include('./partials/html-navbar')
+%>
+    <body class="min-h-screen bg-base-200">
+  <div class="container mx-auto p-4">
+    <h1 class="text-2xl font-bold mb-4">預約時段</h1>
+
+    <!-- 控制列 -->
+    <div class="flex flex-wrap gap-3 items-end mb-6">
+      <label class="form-control w-48">
+        <span class="label-text">日期</span>
+        <input id="date" type="date" class="input input-bordered"/>
+      </label>
+      <button id="btnLoad" class="btn btn-primary">查可預約時段</button>
+      <span id="msg" class="text-error"></span>
+    </div>
+
+    <!-- 教練清單 -->
+    <div id="coachList" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+  </div>
+
+  <!-- 確認預約 Modal -->
+  <dialog id="confirmModal" class="modal">
+    <div class="modal-box">
+      <h3 class="font-bold text-lg mb-2">確認預約</h3>
+      <p id="confirmText" class="mb-4"></p>
+      <div class="modal-action">
+        <button id="btnDoBook" class="btn btn-primary">確認</button>
+        <form method="dialog"><button class="btn">取消</button></form>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Demo：教練資料，之後可從資料庫抓 -->
+  <script>
+    window.COACHES = [
+      { id: 1, name: 'DiDi', img: '/imgs/coaches/Didi.webp' },
+      { id: 2, name: '小美', img: '/imgs/coaches/Didi.webp' }
+    ];
+  </script>
+  <script src="/js/booking.js"></script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+{
+  "name": "mysite",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "tw": "tailwindcss -i ./src/css/app.css -o ./public/css/app.css --watch",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently \"npm run tw\" \"nodemon app.js\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.12",
+    "concurrently": "^9.2.0",
+    "daisyui": "^5.0.50",
+    "nodemon": "^3.1.10",
+    "tailwindcss": "^4.1.12"
+  },
+  "dependencies": {
+    "@fullcalendar/core": "^6.1.19",
+    "@fullcalendar/daygrid": "^6.1.19",
+    "@fullcalendar/interaction": "^6.1.19",
+    "@fullcalendar/timegrid": "^6.1.19",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^17.2.1",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "express-session": "^1.18.2",
+    "moment-timezone": "^0.6.0",
+    "mysql2": "^3.14.3"
+  }
+}
